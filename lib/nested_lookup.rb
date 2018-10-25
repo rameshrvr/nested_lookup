@@ -55,7 +55,7 @@ module NestedLookup
     elsif document.instance_of? Hash
       document.each do |hash_key, hash_value|
         if hash_key.to_s.eql?(key) || (
-            wild && hash_key.downcase.include?(key.downcase)
+            wild && hash_key.to_s.downcase.include?(key.downcase)
           )
           if with_keys
             result.push("#{hash_key}": hash_value)
@@ -95,11 +95,11 @@ module NestedLookup
     )
     if instance_of? Array
       each do |_element|
-        document.get_all_keys(result_array: result_array)
+        _element.get_all_keys(result_array: result_array)
       end
     elsif instance_of? Hash
       each do |key, value|
-        result_array.push(key)
+        result_array.push(key.to_s)
         if value.instance_of? Hash
           value.get_all_keys(result_array: result_array)
         elsif value.instance_of? Array

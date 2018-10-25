@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "nested_lookup"
   spec.version       = NestedLookup::VERSION
   spec.authors       = ["Ramesh RV"]
-  spec.email         = ["Ramesh_RV@symantec.com"]
+  spec.email         = ["rameshrvr@outlook.com"]
 
   spec.summary       = %q{A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
   spec.description   = %q{A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
