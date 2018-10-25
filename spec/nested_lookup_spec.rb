@@ -1,8 +1,8 @@
 require_relative '../lib/nested_lookup'
 
-RSpec.describe NestedLookup do
-  include NestedLookup
+include NestedLookup
 
+RSpec.describe NestedLookup do
   before(:all) do
     # Source documents
     @test_hash1 = { "a": 1, "b": { "d": 100 }, "c": { "d": 200 } }
@@ -227,8 +227,8 @@ RSpec.describe NestedLookup do
   context '#Test3 - Feature get_occurrence' do
     it '1. Result should be FixNum' do
       sample_data = { 'a': 'b', 'c': 'd' }
-      expect(sample_data.get_occurrence_of_key('a')).to be_instance_of Integer
-      expect(sample_data.get_occurrence_of_value('d')).to be_instance_of Integer
+      expect(sample_data.get_occurrence_of_key('a')).to be_instance_of Fixnum
+      expect(sample_data.get_occurrence_of_value('d')).to be_instance_of Fixnum
     end
 
     it '2. Verification for first sample data' do
