@@ -2,8 +2,8 @@
 
 A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)
 
-Features:
-1. key lookups on deeply nested documents.
+Features: (document might be Array of Hashes/Hash or Arrays/nested Arrays/nested Hashes etc)
+1. key lookups on deeply nested document.
 2. fetching all keys from a nested document.
 3. get the number of occurrences of a key/value from a nested document
 
@@ -88,12 +88,14 @@ irb(main):038:0>
 
 You may control the nested_lookup method's behavior by passing some optional arguments.
 
-wild (defaults to `False`):
- if `wild` is `True`, treat the given `key` as a case insensitive
+1. wild (defaults to `False`):
+
+ - if `wild` is `True`, treat the given `key` as a case insensitive
  substring when performing lookups.
 
-with_keys (defaults to `False`):
-  if `with_keys` is `True`, return a Hash of all matched keys
+2. with_keys (defaults to `False`):
+
+ - if `with_keys` is `True`, return a Hash of all matched keys
   and an Array of values.
 
 For example, given the following document:
@@ -121,6 +123,24 @@ sample_data = {
 }
 ```
 
+We could act `wild` and find all the version like this:
+
+```ruby
+irb(main):069:0* sample_data.nested_lookup('version', wild: true)
+=> ["10.13.6", "17G65"]
+irb(main):072:0>
+```
+
+Additionally, if you also needed the matched key names, you could do this:
+
+```ruby
+irb(main):071:0* sample_data.nested_lookup('version', wild: true, with_keys: true)
+=> {"product_version"=>["10.13.6"], "build_version"=>["17G65"]}
+irb(main):073:0* sample_data.nested_lookup('product_version', with_keys: true)
+=> {"product_version"=>["10.13.6"]}
+irb(main):074:0> 
+```
+
 To get a list of every nested key in a document, run this:
 
 ```ruby
@@ -145,24 +165,6 @@ irb(main):064:0* sample_data.get_occurrence_of_key('processor_speed')
 irb(main):065:0> sample_data.get_occurrence_of_value('256 KB')
 => 1
 irb(main):072:0>
-```
-
-Next, we could act `wild` and find all the version like this:
-
-```ruby
-irb(main):069:0* sample_data.nested_lookup('version', wild: true)
-=> ["10.13.6", "17G65"]
-irb(main):072:0>
-```
-
-Additionally, if you also needed the matched key names, you could do this:
-
-```ruby
-irb(main):071:0* sample_data.nested_lookup('version', wild: true, with_keys: true)
-=> {"product_version"=>["10.13.6"], "build_version"=>["17G65"]}
-irb(main):073:0* sample_data.nested_lookup('product_version', with_keys: true)
-=> {"product_version"=>["10.13.6"]}
-irb(main):074:0> 
 ```
 
 ## Development
