@@ -1,7 +1,7 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "nested_lookup/version"
+require_relative "lib/nested_lookup/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "nested_lookup"
@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ramesh RV"]
   spec.email         = ["rameshrvr@outlook.com"]
 
-  spec.summary       = %q{A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
+  spec.summary       = %q{Ruby gem which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
   spec.description   = %q{A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
   spec.homepage      = "https://github.com/rameshrvr/nested_lookup"
   spec.license       = "MIT"
@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
+    spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = "https://github.com/rameshrvr/nested_lookup"
