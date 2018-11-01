@@ -1,4 +1,4 @@
-# NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup)[![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master)
+# NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup) [![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master)
 
 A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)
 
@@ -7,7 +7,7 @@ Features: (document might be Array of Hashes/Hash or Arrays/nested Arrays/nested
 2. fetching all keys from a nested document.
 3. get the number of occurrences of a key/value from a nested document
 
-Documents may be built out of dictionaries (dicts) and/or lists.
+Documents may be built out of nested Hashes and/or Arrays.
 
 ## Installation
 
