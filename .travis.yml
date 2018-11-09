@@ -8,9 +8,7 @@ deploy:
   api_key:
     secure: F/wADg5teclCHTkQHVL413+Ow3/XGkAgSMsWJOKKc+vJqdBTckz60U9ghUL36RF1XX7ZcZZ8biUb2hM1mGUPtG/C6uML2tWy2KBbHNf8yleGL9C68cWM+AicQ5yF3Ug8GRKd/XaM4uxh3gCv1QSqOez8beYVIjjw2U+otper/5hTYzgMoKYCSN9+z0bUhrEbEMull5WgG+RF+3ulHThW96fD3LhetnJOEewHhHbmr2fO4QUAF2trLxVKczYeAOf1KrEicbxgTM9CEIgYRyGSTAyfKAKB8fW87hcn2xxJi6OkZOVZSw1HPnhS9GtfMyGAC+wAEY540Q03NHutwvdARZoylbBKnuuGCrZUSv0215ueCrBSvdBR1vLXkiDXpi02LHYo7nrq6sy6e7WC9UDwGTMSDlZDJaSPiXqY7YIAzyapbaCU+FzUVSoN8ZI6cNZx0sKrR/h+sAZlfnVEPG7wkK+jaMh0Lo3JW3Yzn92vsFbq04sirZ82WrxNHaw9vHZd/jO0Xuj8hkF8tI0YDnlm8H41mbFlue2j7eaXFFkU3o6/P1YwdMqu7q/B+MAl41jfgRDsolv8XZ9jlt7QE1C3ESJxI/aJqyALfzTiNZHhHvKckUzHtTWGndeVkm0g1AWP+fbUw1qTjooWriYm7/L6uOBzqmVipzVnV1dDDEiXQGw=
   gem: nested_lookup
-  on:
-    tags: true
-    repo: rameshrvr/nested_lookup
+
 env:
   global:
   - CODECOV_TOKEN="06bb0a76-aff9-4c3e-a31a-917d6c7057bf"
