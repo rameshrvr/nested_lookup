@@ -1,4 +1,4 @@
-# NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup) [![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master)
+# NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup) [![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master) [![Gem Version](https://badge.fury.io/rb/nested_lookup.svg)](https://badge.fury.io/rb/nested_lookup)
 
 A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)
 

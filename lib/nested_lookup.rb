@@ -154,7 +154,11 @@ module NestedLookup
             recrusion(document: value)
           elsif value.instance_of? Array
             value.each do |element|
-              recrusion(document: element)
+              if element.eql? @keyword and @item.eql? 'value'
+                @result += 1
+              else
+                recrusion(document: element)
+              end
             end
           end
         end

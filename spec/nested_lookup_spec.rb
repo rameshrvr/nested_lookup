@@ -85,7 +85,7 @@ RSpec.describe NestedLookup do
       it '6. Verify with_keys option returns Hash' do
         expect(@test_hash1.nested_lookup(
                  'd', with_keys: true
-               )).to be_instance_of Hash
+        )).to be_instance_of Hash
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe NestedLookup do
         expected_result = @result_array1.insert(3, '10.13.6')
         expect(@test_hash2.nested_lookup(
                  'version', wild: true
-               )).to eq expected_result
+        )).to eq expected_result
         @result_array1.delete_at(3)
       end
 
@@ -110,7 +110,7 @@ RSpec.describe NestedLookup do
         expected_result = { 'build_version' => @result_array1 }
         expect(@test_hash2.nested_lookup(
                  'build_version', with_keys: true
-               )).to eq expected_result
+        )).to eq expected_result
       end
 
       it '5. Verify wild, with_keys options for argument (version)' do
@@ -120,7 +120,7 @@ RSpec.describe NestedLookup do
         }
         expect(@test_hash2.nested_lookup(
                  'version', wild: true, with_keys: true
-               )).to eq expected_result
+        )).to eq expected_result
       end
     end
   end
@@ -293,9 +293,28 @@ RSpec.describe NestedLookup do
         }
       }
       expect(sample_data3.get_occurrence_of_key(
-               'total_number_of_cores'
-             )).to eq 3
+          'total_number_of_cores'
+      )).to eq 3
       expect(sample_data3.get_occurrence_of_value('4')).to eq 3
+    end
+
+    it '5. Verification for fourth sample data' do
+      sample_data4 = {
+        "values": [
+          {
+            "checks": [
+              {
+                "monitoring_zones":
+                %w[mzdfw mzfra mzhkg mziad mzlon mzord mzsyd]
+              }
+            ]
+          }
+        ]
+      }
+
+      expect(sample_data4.get_occurrence_of_value('mzhkg')).to eq 1
+      sample_data4[:values][0][:checks][0][:monitoring_zones].push('mzhkg')
+      expect(sample_data4.get_occurrence_of_value('mzhkg')).to eq 2
     end
   end
 end
