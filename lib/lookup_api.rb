@@ -28,7 +28,7 @@ module LookUpApi
     _get(key: key, document: dup)
   end
 
-  # Returns a document that includes everything but the given keys.
+  # Returns a document that includes everything but the given key.
   #    document = { a: 1, b: 2, c: 3 }
   #    document.nested_delete('c') # => { a: 1, b: 2 }
   #    document # => { a: 1, b: 2, c: 3 }
@@ -44,7 +44,7 @@ module LookUpApi
     temp.nested_delete!(key)
   end
 
-  # Replaces the document without the given keys.
+  # Replaces the document without the given key.
   #    document = { a: 1, b: 2, c: 3 }
   #    document.nested_delete!('c') # => { a: 1, b: 2 }
   #    document # => { a: 1, b: 2 }

@@ -1,9 +1,12 @@
 require_relative 'nested_lookup/version'
 require_relative 'lookup_api'
 
+# Include all supporting modules here
+include NestedLookup
+include LookUpApi
+
 # module responsible for holding nested_lookup methods
 module NestedLookup
-  include LookUpApi
   # Method to lookup a key in a deeply nested document
   #
   # @param document: Might be Array of Hashes (or)

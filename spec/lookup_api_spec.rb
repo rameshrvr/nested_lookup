@@ -1,7 +1,5 @@
 require_relative '../lib/nested_lookup'
 
-include NestedLookup
-
 RSpec.describe LookUpApi do
   before(:all) do
     # Source documents

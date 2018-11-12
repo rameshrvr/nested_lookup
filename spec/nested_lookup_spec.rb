@@ -1,7 +1,5 @@
 require_relative '../lib/nested_lookup'
 
-include NestedLookup
-
 RSpec.describe NestedLookup do
   before(:all) do
     # Source documents
@@ -89,7 +87,7 @@ RSpec.describe NestedLookup do
       end
     end
 
-    context 'II. Verification for complex nexted document (depth 4)' do
+    context 'II. Verification for complex nested document (depth 4)' do
       it '1. Verify result for passed key (args - build_version)' do
         expect(@test_hash2.nested_lookup('build_version')).to eq(@result_array1)
       end
