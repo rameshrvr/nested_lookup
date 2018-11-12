@@ -1,11 +1,14 @@
 # NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup) [![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master) [![Gem Version](https://badge.fury.io/rb/nested_lookup.svg)](https://badge.fury.io/rb/nested_lookup)
 
-A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)
+Ruby library which enables key/value lookup, update, delete on deeply nested documents (Arrays and Hashes)
 
-Features: (document might be Array of Hashes/Hash or Arrays/nested Arrays/nested Hashes etc)
-1. key lookups on deeply nested document.
-2. fetching all keys from a nested document.
-3. get the number of occurrences of a key/value from a nested document
+Features: (document might be Array of Hashes/Hash, Arrays/nested Arrays/nested Hashes etc)
+1. (nested_lookup) key lookups on deeply nested document.
+2. (get_all_keys) fetching all keys from a nested document.
+3. (get_occurrence_of_key/get_occurrence_of_value) get the number of occurrences of a key/value from a nested document
+4. (nested_get) Get a value in a nested document using its key
+5. (nested_update) Update a value in a nested document using its key
+6. (nested_delete) Delete a key->value pair in nested document using its key
 
 Documents may be built out of nested Hashes and/or Arrays.
 
@@ -33,8 +36,6 @@ Or install it yourself as:
 Rameshs-MacBook-Pro:nested_lookup rameshrv$ irb
 irb(main):001:0> require 'nested_lookup'
 => true
-irb(main):002:0> include NestedLookup
-=> Object
 irb(main):003:0> sample_data = {
 irb(main):004:1*   "hardware_details": {
 irb(main):005:2*     "model_name": 'MacBook Pro',
@@ -80,8 +81,18 @@ irb(main):036:0> sample_data.get_occurrence_of_value('memory')
 # Get occurrence of value 'Intel Core i7'
 irb(main):037:0> sample_data.get_occurrence_of_value('Intel Core i7')
 => 1
-irb(main):038:0> 
-
+# Get value for the key 'memory', 'l2_cache(per_core)'
+irb(main):032:0* sample_data.nested_get('memory')
+=> "16 GB"
+irb(main):033:0> sample_data.nested_get('l2_cache(per_core)')
+=> "256 KB"
+# Delete a key in nested document (key -> 'hardware_details')
+irb(main):034:0> sample_data.nested_delete('hardware_details')
+=> {:dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+# Update a key in nested document (key -> 'hardware_details')
+irb(main):035:0> sample_data.nested_update(key: 'hardware_details', value: 'Test')
+=> {:hardware_details=>"Test", :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+irb(main):036:0>
 ```
 
 ### longer tutorial
@@ -165,6 +176,53 @@ irb(main):064:0* sample_data.get_occurrence_of_key('processor_speed')
 irb(main):065:0> sample_data.get_occurrence_of_value('256 KB')
 => 1
 irb(main):072:0>
+```
+
+To Get / Delete / Update a key->value pair in a nested document
+
+```ruby
+irb(main):001:0> require 'nested_lookup'
+=> true
+irb(main):066:0* sample_data.nested_get('os_details')
+=> {:product_version=>"10.13.6", :build_version=>"17G65"}
+irb(main):067:0> sample_data.nested_get('memory')
+=> "16 GB"
+irb(main):068:0> sample_data.nested_delete('processor_details')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+irb(main):069:0> sample_data.nested_update(key: 'processor_details', value: 'Test')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>"Test", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+irb(main):070:0>
+```
+
+Delete key->value pair (Normal and bang menthod)
+
+```ruby
+# Normal method (Returns a document that includes everything but the given key)
+irb(main):068:0> sample_data.nested_delete('processor_details')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+irb(main):071:0* sample_data
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>[{:processor_name=>"Intel Core i7", :processor_speed=>"2.7 GHz", :core_details=>{:total_numberof_cores=>"4", :"l2_cache(per_core)"=>"256 KB"}}], :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+# Bang method (Replaces the document without the given key)
+irb(main):074:0* sample_data.nested_delete!('processor_details')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+irb(main):075:0> sample_data
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}}
+```
+
+Update value for the given key (Normal and bang method)
+
+```ruby
+# Normal method (Returns a document that has updated key, value pair)
+irb(main):109:0* sample_data.nested_update(key: 'processor_details', value: 'Test')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>"Test", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}, :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+irb(main):110:0> sample_data
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>[{:processor_name=>"Intel Core i7", :processor_speed=>"2.7 GHz", :core_details=>{:total_numberof_cores=>"4", :"l2_cache(per_core)"=>"256 KB"}}], :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}, :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+# Replaces the document with the updated key, value pair
+irb(main):114:0* sample_data.nested_update!(key: 'processor_details', value: 'Test')
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>"Test", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}, :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+irb(main):115:0> sample_data
+=> {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>"Test", :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}, :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+
 ```
 
 ## Development
