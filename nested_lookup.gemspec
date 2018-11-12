@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Ruby gem which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
   spec.description   = %q{A small ruby library which enables key/value lookups on deeply nested documents (Arrays and Hashes)}
-  spec.homepage      = "https://github.com/rameshrvr/nested_lookup"
+  spec.homepage      = 'https://rubygems.org/gems/nested_lookup'
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -21,7 +21,6 @@ Gem::Specification.new do |spec|
 
     spec.metadata["homepage_uri"] = spec.homepage
     spec.metadata["source_code_uri"] = 'https://github.com/rameshrvr/nested_lookup'
-    spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
   else
     raise "RubyGems 2.0 or newer is required to protect against " \
       "public gem pushes."
