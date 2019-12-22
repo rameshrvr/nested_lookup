@@ -63,31 +63,46 @@ irb(main):027:3>     },
 irb(main):028:2*   }
 irb(main):029:1> }
 => {:hardware_details=>{:model_name=>"MacBook Pro", :processor_details=>[{:processor_name=>"Intel Core i7", :processor_speed=>"2.7 GHz", :core_details=>{:total_numberof_cores=>"4", :"l2_cache(per_core)"=>"256 KB"}}], :os_details=>{:product_version=>"10.13.6", :build_version=>"17G65"}, :memory=>"16 GB"}, :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
-irb(main):030:0> 
-irb(main):032:0> 
+irb(main):030:0>
+irb(main):032:0>
+irb(main):001:0>
 # Search for key 'product_version'
 irb(main):033:0* sample_data.nested_lookup('product_version')
 => ["10.13.6", "10.14.0"]
+irb(main):001:0>
+irb(main):001:0>
 # Fetch all keys from the document
 irb(main):034:0> sample_data.get_all_keys
 => ["hardware_details", "model_name", "processor_details", "processor_name", "processor_speed", "core_details", "total_numberof_cores", "l2_cache(per_core)", "os_details", "product_version", "build_version", "memory", "dup_hardware_details", "model_name", "os_details", "product_version", "build_version"]
+irb(main):001:0>
+irb(main):001:0>
 # Get occurrence of key 'model_name' (present in both 'hardware_details', 'dup_hardware_details')
 irb(main):035:0> sample_data.get_occurrence_of_key('model_name')
 => 2
+irb(main):001:0>
+irb(main):001:0>
 # Get occurrence of value 'memory' (It is actually a key, should return 0)
 irb(main):036:0> sample_data.get_occurrence_of_value('memory')
 => 0
+irb(main):001:0>
+irb(main):001:0>
 # Get occurrence of value 'Intel Core i7'
 irb(main):037:0> sample_data.get_occurrence_of_value('Intel Core i7')
 => 1
+irb(main):001:0>
+irb(main):001:0>
 # Get value for the key 'memory', 'l2_cache(per_core)'
 irb(main):032:0* sample_data.nested_get('memory')
 => "16 GB"
 irb(main):033:0> sample_data.nested_get('l2_cache(per_core)')
 => "256 KB"
+irb(main):001:0>
+irb(main):001:0>
 # Delete a key in nested document (key -> 'hardware_details')
 irb(main):034:0> sample_data.nested_delete('hardware_details')
 => {:dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
+irb(main):001:0>
+irb(main):001:0>
 # Update a key in nested document (key -> 'hardware_details')
 irb(main):035:0> sample_data.nested_update(key: 'hardware_details', value: 'Test')
 => {:hardware_details=>"Test", :dup_hardware_details=>{:model_name=>"MacBook Pro - 1", :os_details=>{:product_version=>"10.14.0", :build_version=>"17G65"}}}
