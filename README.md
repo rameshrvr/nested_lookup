@@ -1,14 +1,13 @@
 # NestedLookup [![Build Status](https://travis-ci.com/rameshrvr/nested_lookup.svg?branch=master)](https://travis-ci.com/rameshrvr/nested_lookup) [![Coverage Status](https://codecov.io/gh/rameshrvr/nested_lookup/badge.svg?branch=master)](https://codecov.io/gh/rameshrvr/nested_lookup?branch=master) [![Gem Version](https://badge.fury.io/rb/nested_lookup.svg)](https://badge.fury.io/rb/nested_lookup)
 
-Ruby library which enables key/value lookup, update, delete on deeply nested documents (Arrays and Hashes)
+##### Ruby library which enables key/value lookup, update, delete on deeply nested documents (Arrays and Hashes)Ruby library which enables key/value lookup, update, delete on deeply nested documents (Arrays and Hashes)
 
 Features: (document might be Array of Hashes/Hash, Arrays/nested Arrays/nested Hashes etc)
-1. (nested_lookup) key lookups on deeply nested document.
-2. (get_all_keys) fetching all keys from a nested document.
-3. (get_occurrence_of_key/get_occurrence_of_value) get the number of occurrences of a key/value from a nested document
-4. (nested_get) Get a value in a nested document using its key
-5. (nested_update) Update a value in a nested document using its key
-6. (nested_delete) Delete a key->value pair in nested document using its key
+1. **(*nested_lookup*) key lookups on a deeply nested document. Returns an Array of matching Values.**
+2. **(*get_all_keys*) Fetch all keys from a deeply nested document. Returns array of keys**
+3. **(*get_occurrence_of_key*/*get_occurrence_of_value*) Returns the number of occurrences of a key/value from a deeply nested document**
+4. **(*nested_update*) Given a document, find all occurences of the given key and update the value. By default, returns a copy of the document. To mutate the original use bang method (*nested_update!*)**
+5. **(*nested_delete*) Given a document, find all occurrences of the given key and delete it. By default, returns a copy of the document. To mutate the original use bang method (*nested_delete!*)**
 
 Documents may be built out of nested Hashes and/or Arrays.
 
